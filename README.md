@@ -19,6 +19,12 @@ To deploy this project
 - Uses unique id in qr code
 - Data can be easily shared
 
+## Future updates
+
+- [ ] Auto copying attendance in monthly sheet
+- [ ] backup page
+- [ ] control sheet 
+
 
 ## Frontend
 
