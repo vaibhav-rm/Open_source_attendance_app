@@ -45,8 +45,8 @@ for (var i = numDays; i > 1; i--) {
 
 function copyToMonthly() {
   // Set the ID of the daily sheet and the monthly sheet
-  var dailySheetId = SpreadsheetApp.openById(sheet.getRange(2,2).getValue());
-  var monthlySheetId = SpreadsheetApp.openById(sheet.getRange(3,2).getValue());
+  var dailySheetId = sheet.getRange(2,2).getValue();
+  var monthlySheetId = sheet.getRange(3,2).getValue();
 
   // Get the current date
   var now = new Date();
@@ -58,15 +58,18 @@ function copyToMonthly() {
     var monthlySheet = SpreadsheetApp.openById(monthlySheetId).getSheetByName("Sheet1");
 
     // Get the range of data to copy from the daily sheet
-    var dataRange = dailySheet.getRange(1, 1, dailySheet.getLastRow(), dailySheet.getLastColumn());
+    var dataRange = dailySheet.getDataRange();
+
+    // Get the values in the range
+    var data = dataRange.getValues();
 
     // Get the last row in the monthly sheet
     var lastRow = monthlySheet.getLastRow();
 
-    // Copy the data from the daily sheet and paste it into the monthly sheet
-    dataRange.copyTo(monthlySheet.getRange(lastRow + 1, 1), {contentsOnly: true});
+    // Set the values in the monthly sheet equal to the values in the daily sheet
+    monthlySheet.getRange(lastRow + 1, 1, data.length, data[0].length).setValues(data);
 
-     // Delete the columns after the second column in the daily sheet
+    // Delete the columns after the second column in the daily sheet
     dailySheet.deleteColumns(3, dailySheet.getLastColumn() - 2);
   }
 }
