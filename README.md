@@ -21,7 +21,7 @@ To deploy this project
 
 ## Future updates
 
-- [ ] Auto copying attendance in monthly sheet
+- [x] Auto copying attendance in monthly sheet
 - [ ] backup page
 - [ ] control sheet 
 
